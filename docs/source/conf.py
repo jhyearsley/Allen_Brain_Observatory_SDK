@@ -32,7 +32,8 @@
 # ones.
 extensions = ['sphinx.ext.autodoc', 
               'numpydoc', 
-              'sphinx.ext.autosummary']
+              'sphinx.ext.autosummary',
+              'nbsphinx']
 
 numpydoc_show_class_members=False
 numpydoc_show_inherited_class_members=False

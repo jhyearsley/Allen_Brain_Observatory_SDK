@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -30,6 +32,8 @@
   
 
   
+    <link rel="stylesheet" href="nstatic/pygments.css" type="text/css" />
+  
 
   
         <link rel="author" title="About these documents"
@@ -38,7 +42,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Brain Observatory SDK 1.0 documentation" href="index.html"/>
-        <link rel="prev" title="Jupyter Examples" href="jupyter_examples.html"/> 
+        <link rel="next" title="Intro To Experiment Containers" href="experiment_containers.html"/>
+        <link rel="prev" title="Clustering Cells Responses to Natural Movie Three Stimulus" href="clustering_with_natural_movie.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -114,6 +119,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="experiment_containers.html">Intro To Experiment Containers</a></li>
 </ul>
 
             
@@ -177,7 +183,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="documentation">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="documentation">
 <h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
 <p>explanation of what is in the documentation
 it consists of classes and shows the methods within a class</p>
@@ -844,8 +884,10 @@ what the <em>NaturalMovie</em> class is used for</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="experiment_containers.html" class="btn btn-neutral float-right" title="Intro To Experiment Containers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="jupyter_examples.html" class="btn btn-neutral" title="Jupyter Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="clustering_with_natural_movie.html" class="btn btn-neutral" title="Clustering Cells Responses to Natural Movie Three Stimulus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -11,6 +11,7 @@ Guide
    installing
    jupyter_examples
    sdk_documentation
+   experiment_containers
 
 
 

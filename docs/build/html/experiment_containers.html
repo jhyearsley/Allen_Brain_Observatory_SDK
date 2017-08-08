@@ -1,0 +1,2424 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Intro To Experiment Containers &mdash; Brain Observatory SDK 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="nstatic/pygments.css" type="text/css" />
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Brain Observatory SDK 1.0 documentation" href="index.html"/>
+        <link rel="prev" title="Documentation" href="sdk_documentation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Brain Observatory SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter_examples.html">Jupyter Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sdk_documentation.html">Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Intro To Experiment Containers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Getting-Started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Import-Libraries">Import Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#1.-Retrieve-All-Experiment-Containers">1. Retrieve All Experiment Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#2.-Access-The-Info-In-An-Experiment-Container">2. Access The Info In An Experiment Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#3.-Retrieving-Experiment-Containers-Matching-Specific-Criteria">3. Retrieving <strong>Experiment Containers</strong> Matching Specific Criteria</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Brain Observatory SDK</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Intro To Experiment Containers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/experiment_containers.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="Intro-To-Experiment-Containers">
+<h1>Intro To Experiment Containers<a class="headerlink" href="#Intro-To-Experiment-Containers" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, you will learn :</p>
+<ol class="arabic simple">
+<li>Retrieving all <strong>Experiment Containers</strong></li>
+<li>Accessing info in an <strong>Experiment Container</strong></li>
+<li>Retrieving <strong>Experiment Containers</strong> matching specific criteria</li>
+</ol>
+<div class="section" id="Getting-Started">
+<h2>Getting Started<a class="headerlink" href="#Getting-Started" title="Permalink to this headline">¶</a></h2>
+<p>Be sure you’ve installed the <em>Allen SDK Package</em>.</p>
+<p>If you haven’t, follow this link: <a class="reference external" href="http://alleninstitute.github.io/AllenSDK/install.html">Allen SDK Package
+Installation</a></p>
+</div>
+<div class="section" id="Import-Libraries">
+<h2>Import Libraries<a class="headerlink" href="#Import-Libraries" title="Permalink to this headline">¶</a></h2>
+<p>Let’s begin by importing The neccessary Libraries. They are as follows:
+* <strong>BrainObservatoryCache</strong> contains functions for accessing and
+parsing our data * <strong>pprint</strong> for formatting our data, making it easy
+to read</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">allensdk.core.brain_observatory_cache</span> <span class="kn">import</span> <span class="n">BrainObservatoryCache</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="1.-Retrieve-All-Experiment-Containers">
+<h2>1. Retrieve All Experiment Containers<a class="headerlink" href="#1.-Retrieve-All-Experiment-Containers" title="Permalink to this headline">¶</a></h2>
+<p>We will start our data retrieval by initializing the variable <em>boc</em> as a
+<strong>BrainObservatoryCache</strong> object.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="n">boc</span> <span class="o">=</span> <span class="n">BrainObservatoryCache</span><span class="p">(</span><span class="n">manifest_file</span><span class="o">=</span><span class="s1">&#39;boc/manifest.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><em>boc</em> will now serve as a location to store the information about our
+<strong>Experiment Containers</strong>.</p>
+<p>We can now retrieve the <strong>Experiment Containers</strong> by calling the
+<em>get_experiment_containers()</em> method from the
+<strong>BrainObservatoryCache</strong> class.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="n">all_experiment_containers</span> <span class="o">=</span> <span class="n">boc</span><span class="o">.</span><span class="n">get_experiment_containers</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s print the contents of <em>all_experiment_containers</em> using
+<strong>pprint</strong>.</p>
+<p>Take note of the following: * The data is a [list] containing many
+{JSON objects} * Each JSON object represents an <strong>Experiment
+Container</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">all_experiment_containers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[{&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;283284&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 566759225,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-283284&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;261969&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 546328009,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-261969&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Scnn1a-Tg3-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;230570&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510911,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Scnn1a-Tg3-Cre;Camk2a-tTA;Ai93-230570&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;284669&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 569792815,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-284669&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;234584&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511511015,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-234584&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;249122&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 530739574,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-249122&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222426&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510736,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222426&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;222181&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510733,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-222181&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;225036&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510797,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-225036&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;228786&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511511001,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-228786&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;229109&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510836,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-229109&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;248894&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 528792730,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-248894&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;271727&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 557986062,
+  &#39;imaging_depth&#39;: 335,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-271727&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;283147&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 564425775,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-283147&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;283278&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 571541563,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-283278&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;222181&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511507144,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-222181&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Scnn1a-Tg3-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;246775&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 528889127,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Scnn1a-Tg3-Cre;Camk2a-tTA;Ai93-246775&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;276949&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 565039910,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-276949&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;271727&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 558476280,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-271727&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;273904&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 560821491,
+  &#39;imaging_depth&#39;: 325,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-273904&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;296708&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 576208803,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)-hyg&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-hyg-296708&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;300663&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 580051757,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre_KL100;Camk2a-tTA;Ai93-300663&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222420&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510667,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222420&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;271727&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 556665479,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-271727&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;233215&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511854338,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-233215&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;292490&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 577720109,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre_KL100;Camk2a-tTA;Ai93-292490&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;222431&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510627,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-222431&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;229106&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510855,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-229106&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;244898&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 529487170,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-244898&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;280638&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 561312433,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-280638&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;291465&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 575302106,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre_KL100;Camk2a-tTA;Ai93-291465&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;277938&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 566480479,
+  &#39;imaging_depth&#39;: 325,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-277938&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;229109&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510848,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-229109&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;265164&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 546085409,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-265164&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;234831&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 512124562,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-234831&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;271750&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 555040113,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-271750&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;296702&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 575892535,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-296702&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;228786&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510675,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-228786&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;268133&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 552760668,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-268133&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;276948&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 557520762,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-276948&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;276947&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 558471484,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-276947&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;279437&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 560363325,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-279437&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;291865&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 572376866,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre_KL100;Camk2a-tTA;Ai93-291865&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;266396&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 555042465,
+  &#39;imaging_depth&#39;: 300,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-266396&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;261458&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 540168835,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-261458&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;284418&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 569396922,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-284418&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;237706&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 517328083,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-237706&#39;,
+  &#39;tags&#39;: [u&#39;Epileptiform Events&#39;],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;225039&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510645,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-225039&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;282820&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 569287964,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-282820&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;271750&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 555327033,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-271750&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;243293&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 524691282,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-243293&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;268133&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 551888517,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-268133&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;280639&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 561472631,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-280639&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222426&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510715,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222426&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Scnn1a-Tg3-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;262562&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 546724786,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Scnn1a-Tg3-Cre;Camk2a-tTA;Ai93-262562&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;248895&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 528799602,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-248895&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222424&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510817,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222424&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;229470&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510893,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-229470&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;233442&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511499656,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-233442&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;250606&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 531100608,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-250606&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;252174&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 536323956,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93(MG)-252174&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;296702&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 573261513,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-296702&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222420&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511509529,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222420&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;296708&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 574529963,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)-hyg&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-hyg-296708&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;233442&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510758,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-233442&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;226219&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510710,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-226219&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;222431&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510723,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-222431&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;257786&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 538803515,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-257786&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;225037&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510670,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-225037&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;271729&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 560782654,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-271729&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;270341&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 553007101,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-270341&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;296704&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 576714442,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-296704&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;244896&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 527550471,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-244896&#39;,
+  &#39;tags&#39;: [u&#39;Epileptiform Events&#39;],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;295995&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 576411244,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-295995&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Scnn1a-Tg3-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;231951&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510955,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Scnn1a-Tg3-Cre;Camk2a-tTA;Ai93-231951&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;253302&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 531823088,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-253302&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;282817&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 566307034,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-282817&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;225036&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510753,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-225036&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;271732&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 560722730,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-271732&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;296708&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 575766605,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)-hyg&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-hyg-296708&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;260936&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 545578995,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-260936&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;265161&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 547561986,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-265161&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;229106&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510914,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-229106&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;292490&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 575771818,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre_KL100;Camk2a-tTA;Ai93-292490&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;265161&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 551412603,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-265161&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;280643&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 564791561,
+  &#39;imaging_depth&#39;: 365,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-280643&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;296704&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 574034739,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-296704&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222424&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511507650,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222424&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;273576&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 557984490,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-273576&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;279430&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 567919555,
+  &#39;imaging_depth&#39;: 300,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-279430&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;229482&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511511029,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-229482&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;261967&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 555749366,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-261967&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;229107&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510945,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-229107&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;268773&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 552749238,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-268773&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;250605&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 529763300,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-250605&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;232623&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511511011,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-232623&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;234584&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511511089,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-234584&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;234589&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510763,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-234589&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;270341&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 560821337,
+  &#39;imaging_depth&#39;: 325,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-270341&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Scnn1a-Tg3-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;221470&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511507811,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Scnn1a-Tg3-Cre;Camk2a-tTA;Ai93-221470&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;249136&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 529770662,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-249136&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;280643&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 564791547,
+  &#39;imaging_depth&#39;: 265,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-280643&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;284418&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 569718095,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-284418&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;283278&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 570994450,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-283278&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;296702&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 573864648,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-296702&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;244898&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 528959519,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-244898&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;225039&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510688,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-225039&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;260936&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 547315012,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-260936&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;229106&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510940,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-229106&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;277938&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 564791582,
+  &#39;imaging_depth&#39;: 320,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-277938&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;265164&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 550127305,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-265164&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;232623&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511500480,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-232623&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;225037&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510699,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-225037&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222425&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510695,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222425&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;276948&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 559792042,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-276948&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;228379&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510994,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-228379&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;277933&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 560578597,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-277933&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;222179&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511506664,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-222179&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;286360&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 571039045,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-286360&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;228378&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510884,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-228378&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;228379&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510867,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-228379&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;233215&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511511083,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-233215&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;255445&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 532233174,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-255445&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;233214&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511976252,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-233214&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;261967&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 550922597,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-261967&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;270341&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 554037268,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-270341&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;280639&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 562536151,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-280639&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;291462&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 572606380,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre_KL100;Camk2a-tTa;Ai93-291462&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;279437&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 559645337,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-279437&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Scnn1a-Tg3-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;250789&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 535575493,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Scnn1a-Tg3-Cre;Camk2a-tTA;Ai93-250789&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;228378&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511511052,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-228378&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;284417&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 569981238,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-284417&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;280643&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 560876149,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-280643&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;229107&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510917,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-229107&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;229105&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510998,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-229105&#39;,
+  &#39;tags&#39;: [u&#39;Epileptiform Events&#39;],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Scnn1a-Tg3-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;250789&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 540993888,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Scnn1a-Tg3-Cre;Camk2a-tTA;Ai93-250789&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;268773&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 551657958,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-268773&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;222179&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511507602,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-222179&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;226219&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510896,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-226219&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222425&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510650,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222425&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;250606&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 539291370,
+  &#39;imaging_depth&#39;: 335,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-250606&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;261969&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 551412362,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-261969&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;228786&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510860,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-228786&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;282820&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 566674370,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-282820&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;273576&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 555700037,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-273576&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Scnn1a-Tg3-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;231953&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511498742,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Scnn1a-Tg3-Cre;Camk2a-tTA;Ai93-231953&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;291865&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 573378109,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre_KL100;Camk2a-tTA;Ai93-291865&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;283284&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 569645688,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-283284&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;283284&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 570008442,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-283284&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;229105&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510681,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-229105&#39;,
+  &#39;tags&#39;: [u&#39;Epileptiform Events&#39;],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;273576&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 556936291,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-273576&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;279430&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 569811199,
+  &#39;imaging_depth&#39;: 300,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-279430&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222420&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510664,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222420&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222425&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510927,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222425&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;277933&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 560809200,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-277933&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;265164&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 547476353,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-265164&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;226219&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510658,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-226219&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;284417&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 569611977,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-284417&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;261969&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 549855418,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-261969&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;231585&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511856567,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-231585&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;260936&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 543677425,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-260936&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;271750&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 554014018,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-271750&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;231585&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510870,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-231585&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;288600&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 571137444,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-288600&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Scnn1a-Tg3-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;246775&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 531134088,
+  &#39;imaging_depth&#39;: 335,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Scnn1a-Tg3-Cre;Camk2a-tTA;Ai93-246775&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;232623&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510748,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-232623&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;251214&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 530243910,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-251214&#39;,
+  &#39;tags&#39;: [u&#39;Epileptiform Events&#39;],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;244884&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 526481129,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-244884&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;274234&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 560820973,
+  &#39;imaging_depth&#39;: 435,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-274234&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;286360&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 570278595,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-286360&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;225037&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510822,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-225037&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;266396&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 556936862,
+  &#39;imaging_depth&#39;: 300,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-266396&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;283147&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 563364151,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-283147&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;284417&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 569251675,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-284417&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;268773&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 556899621,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-268773&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;268133&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 553568029,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-268133&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;231585&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511498500,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-231585&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;271729&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 556639822,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-271729&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;280639&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 560753319,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-280639&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;288600&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 571684731,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-288600&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;231584&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510718,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-231584&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222426&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510640,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222426&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;222424&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510776,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-222424&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;284669&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 566458503,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-284669&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;222431&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510989,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-222431&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;286366&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 570428250,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-286366&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;271729&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 554219902,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-271729&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Nr5a1-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;261967&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 553452260,
+  &#39;imaging_depth&#39;: 350,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Nr5a1-Cre;Camk2a-tTA;Ai93-261967&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;296704&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 575710989,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-296704&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISrl&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;276949&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 561463418,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-276949&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;233442&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511511006,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre;Camk2a-tTA;Ai93-233442&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISpm&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;231584&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510788,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-231584&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rbp4-Cre_KL100&#39;,
+  &#39;donor_name&#39;: u&#39;291465&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 572607996,
+  &#39;imaging_depth&#39;: 375,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rbp4-Cre_KL100;Camk2a-tTA;Ai93-291465&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;282817&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 565216521,
+  &#39;imaging_depth&#39;: 175,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-282817&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;284669&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 568461662,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-284669&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISam&#39;},
+ {&#39;cre_line&#39;: u&#39;Emx1-IRES-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;237706&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 527676429,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Emx1-IRES-Cre;Camk2a-tTA;Ai93-237706&#39;,
+  &#39;tags&#39;: [u&#39;Epileptiform Events&#39;],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+  &#39;donor_name&#39;: u&#39;225036&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510779,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-225036&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISp&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;228786&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510729,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-228786&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISl&#39;},
+ {&#39;cre_line&#39;: u&#39;Rorb-IRES2-Cre&#39;,
+  &#39;donor_name&#39;: u&#39;231120&#39;,
+  &#39;failed&#39;: False,
+  &#39;id&#39;: 511510794,
+  &#39;imaging_depth&#39;: 275,
+  &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+  &#39;specimen_name&#39;: u&#39;Rorb-IRES2-Cre;Camk2a-tTA;Ai93-231120&#39;,
+  &#39;tags&#39;: [],
+  &#39;targeted_structure&#39;: u&#39;VISal&#39;}]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="2.-Access-The-Info-In-An-Experiment-Container">
+<h2>2. Access The Info In An Experiment Container<a class="headerlink" href="#2.-Access-The-Info-In-An-Experiment-Container" title="Permalink to this headline">¶</a></h2>
+<p>We can retrieve a single <strong>Experiment Container</strong> by using its
+respective index value within the list.</p>
+<p>Below we will create a variable called <em>experiment_container_one</em>, and
+assign it to the first <strong>Experiment Container</strong> within
+<em>all_experiment_containers</em> list.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="n">experiment_container_one</span> <span class="o">=</span> <span class="n">all_experiment_containers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s print the contents of <em>experiment_container_one</em> using
+<strong>pprint</strong>.</p>
+<p>Take Note of the following: * This is a single JSON object * A single
+<strong>Experiment Container</strong> contains 10 keys/value pairs</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">experiment_container_one</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;cre_line&#39;: u&#39;Cux2-CreERT2&#39;,
+ &#39;donor_name&#39;: u&#39;283284&#39;,
+ &#39;failed&#39;: False,
+ &#39;id&#39;: 566759225,
+ &#39;imaging_depth&#39;: 275,
+ &#39;reporter_line&#39;: u&#39;Ai93(TITL-GCaMP6f)&#39;,
+ &#39;specimen_name&#39;: u&#39;Cux2-CreERT2;Camk2a-tTA;Ai93-283284&#39;,
+ &#39;tags&#39;: [],
+ &#39;targeted_structure&#39;: u&#39;VISam&#39;}
+</pre></div></div>
+</div>
+<p>For each key in the experiment container, we can retrieve its
+corresponding value by using <em>experiment_container_one [‘key’]</em>.</p>
+<p>Try printing some of the values in the cell below!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="k">print</span><span class="p">(</span><span class="n">experiment_container_one</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">experiment_container_one</span><span class="p">[</span><span class="s1">&#39;cre_line&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">experiment_container_one</span><span class="p">[</span><span class="s1">&#39;specimen_name&#39;</span><span class="p">])</span>
+<span class="c1">#1 Can you print the value for the key, &#39;donor_name&#39;</span>
+<span class="c1">#2 Can you print the vlaue for the key, &#39;imaging_depth&#39; field</span>
+<span class="c1">#3 Can you print the value for the key, &#39;targeted_structure&#39; field</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+566759225
+Cux2-CreERT2
+Cux2-CreERT2;Camk2a-tTA;Ai93-283284
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="3.-Retrieving-Experiment-Containers-Matching-Specific-Criteria">
+<h2>3. Retrieving <strong>Experiment Containers</strong> Matching Specific Criteria<a class="headerlink" href="#3.-Retrieving-Experiment-Containers-Matching-Specific-Criteria" title="Permalink to this headline">¶</a></h2>
+<p>Earlier, you saw how to retrieve all <strong>Experiment Containers</strong> using the
+<em>get_experiment_containers()</em> method.</p>
+<p>Now, let’s try retrieving <strong>Experiment Containers</strong> based on specific
+criteria.</p>
+<p>The criteria is as follows: * the cells recorded from during
+experimentation must be from the VISp and VISam structures * the
+imaging depth of the cells must be at 275 * the transgenic cre-line of
+the mice used must be Cux2-CreERT2</p>
+<p>Luckily, the <em>get_experiment_containers()</em> method has paramaters that
+will take care of finding these specific <strong>Experiment Containers</strong>!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2"><div class="highlight"><pre>
+<span></span><span class="n">specific_experiment_containers</span> <span class="o">=</span> <span class="n">boc</span><span class="o">.</span><span class="n">get_experiment_containers</span><span class="p">(</span><span class="n">targeted_structures</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;VISp&#39;</span><span class="p">,</span><span class="s1">&#39;VISam&#39;</span><span class="p">],</span> <span class="n">imaging_depths</span><span class="o">=</span><span class="p">[</span><span class="mi">275</span><span class="p">],</span>
+                                                              <span class="n">transgenic_lines</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Cux2-CreERT2&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;there are </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">specific_experiment_containers</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; Experiment Containers matching this criteria&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+there are 10 Experiment Containers matching this criteria
+</pre></div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="sdk_documentation.html" class="btn btn-neutral" title="Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Zakariya Hussain.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
