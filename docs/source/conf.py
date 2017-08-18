@@ -32,7 +32,7 @@ needs_sphinx = '1.6'
 # ones.
 extensions = ['sphinx.ext.autodoc', 
 #              'numpydoc', 
-              'sphinx.ext.autosummary',
+              'sphinx.ext.autosummary',]
 #              'nbsphinx']
 
 #numpydoc_show_class_members=False
